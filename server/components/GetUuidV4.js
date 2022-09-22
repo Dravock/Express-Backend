@@ -1,7 +1,10 @@
-import { v4 as uuidV4 } from 'uuid';
+// import { v4 as uuidV4 } from 'uuid';
+const uuid = require('uuid')
 
-const GetUuidV4 = () =>{
-    return console.log('test uuidV4:',uuidV4());
+function GetUuidV4 () {
+    return console.log('test uuidV4:',uuid.v4());
 }
 
-export default GetUuidV4;
+module.exports = GetUuidV4
+
+
