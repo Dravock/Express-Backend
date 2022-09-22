@@ -4,8 +4,6 @@ const apiRouter = require('../routes')
 const GetUuidV4 = require('../components/GetUuidV4.js');
 
 
-
-
 // Server Daten
 const currentdate = new Date();
 const app = express();
@@ -14,7 +12,7 @@ app.use(express.json());
 
 // Variablen für die Server umgebung
     // const userId    = GetUuidV4()
-    // const hashedPW  = await HashPassword('Test Password')
+
 
 // Einträge in die DB
 app.use('/api/link',apiRouter)

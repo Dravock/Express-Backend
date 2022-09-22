@@ -45,9 +45,4 @@ router.post('/', async (request, resolve, next) => {
 // DELETE REQUEST
 
 
-
 module.exports = router;
-
-
-
-
