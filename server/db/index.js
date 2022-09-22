@@ -1,6 +1,9 @@
 const mysql = require('mysql');
 require('dotenv').config()
 
+// Settings
+const dbTable=process.env.User
+let db ={};
 
 const conn = mysql.createPool({
     connectionLimit:process.env.CONN_LIMIT,
@@ -11,9 +14,7 @@ const conn = mysql.createPool({
     port:process.env.PORT
 })
 
-const dbTable='user'
-let db ={};
-
+// SQL QUERY STATEMENTS 
 db.all = () => {
     return new Promise((resolve, reject) => {
         conn.query(`SELECT * FROM ${dbTable}`, (err,results)=>{
@@ -25,6 +26,7 @@ db.all = () => {
         });
     });
 };
+
 db.one = (id) => {
     return new Promise((resolve, reject) => {
         conn.query(`SELECT * FROM ${dbTable} WHERE id=?`,[id] ,(err,results)=>{

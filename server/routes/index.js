@@ -26,11 +26,15 @@ router.get('/:id', async (request, resolve, next) => {
     }
 });
 
+
 // POST REQUEST
 router.post('/', async (request, resolve, next) => {
+    var hashedPW
     const { vorname,nachname,email,password } = request.body;
     try{
-        const hashedPW = await bcrypt.hash(password,10);
+        if(password){
+            var hashedPW = await bcrypt.hash(password,10);
+        }
         const dbPostData ={vorname,nachname,email,hashedPW}
         let results = await db.post (dbPostData);
         resolve.json(results);
