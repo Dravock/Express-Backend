@@ -1,18 +1,19 @@
 const mysql = require('mysql');
+require('dotenv').config()
 
 const conn = mysql.createPool({
-    connectionLimit:10,
-    password:'',
-    user: 'root',
-    host: 'localhost',
-    database:'test',
-    port:'3306'
-
+    connectionLimit:process.env.CONN_LIMIT,
+    password:process.env.PASSWORD,
+    user: process.env.USER_NAME,
+    host: process.env.HOST_NAME,
+    database:process.env.DB_NAME,
+    port:process.env.PORT
 })
 
-let chirpdb ={};
 
-chirpdb.all = () => {
+let db ={};
+
+db.all = () => {
     return new Promise((resolve, reject) => {
         conn.query('SELECT * FROM user', (err,results)=>{
             if(err){
@@ -23,4 +24,4 @@ chirpdb.all = () => {
     });
 };
 
-module.exports = chirpdb;
+module.exports = db ;
