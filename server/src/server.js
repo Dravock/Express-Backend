@@ -2,30 +2,27 @@ const express = require('express');
 const cors = require('cors');
 const apiRouter = require('../routes')
 const GetUuidV4 = require('../components/GetUuidV4.js');
-const HashPassword = require('../components/HashPassword.js');
 
 
-// const hashedPW  = await  HashPassword('Test Password')
-// const userId    =   GetUuidV4()
+
 
 // Server Daten
 const currentdate = new Date();
 const app = express();
-
-// Variablen für die Server umgebung
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
+// Variablen für die Server umgebung
+    // const userId    = GetUuidV4()
+    // const hashedPW  = await HashPassword('Test Password')
+
+// Einträge in die DB
+app.use('/api/link',apiRouter)
+// app.use('/api/user',apiRouter)
 
 
-app.use('/api/chirps',apiRouter)
 
-// app.post('/testlink',(req, res)=>{
-//     const { destructure } = req.body
-// })
-
-
-app.listen(3001, ()=>{
+app.listen(3001, async ()=>{
     var datetime = "Last Sync: "
                                 + currentdate.getHours()    + ":"  
                                 + currentdate.getMinutes()  + ":" 
